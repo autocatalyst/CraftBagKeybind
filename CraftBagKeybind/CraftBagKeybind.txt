@@ -1,8 +1,8 @@
-﻿## Title: Craft Bag Quick Toggle
-## Description: Adds a keybind option for auto-add to craft bag.
+﻿## Title: Craft Bag Keybind
+## Description: Adds a keybind for the Auto-Add to Craft Bag setting.
 ## Author: |C9b22ffautocatalyst|r
-## Version: 0.12a
+## Version: 0.1.5a
 ## APIVersion: 100025
 
-CraftBagKeybind.lua
 Bindings.xml
+CraftBagKeybind.lua

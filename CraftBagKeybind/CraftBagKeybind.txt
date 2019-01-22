@@ -1,7 +1,7 @@
 ﻿## Title: Craft Bag Keybind
 ## Description: Adds a keybind for the Auto-Add to Craft Bag setting.
 ## Author: |C9b22ffautocatalyst|r
-## Version: 0.1.5a
+## Version: 1.0
 ## APIVersion: 100025
 
 Bindings.xml

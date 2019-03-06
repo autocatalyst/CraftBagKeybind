@@ -1,35 +1,29 @@
 -- Declare top-lvl table
-CraftBagKeybind = {}
+local ADDON_NAME = CraftBagKeybind
 
-local ADDON_NAME = 'CraftBagKeybind'
-
--- EVENT_ADD_ON_LOADED
-local function OnAddOnLoaded(event, addonName)
+-- EVENT_ADD_ON_LOADED Tell UI to create menu item in Controls and func Initialize.
+function CraftBagKeybind:OnAddOnLoaded(event, addonName)
   if (addonName ~= ADDON_NAME) then
       return
   end
   
-  ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_AUTOADD_TO_CRAFT_BAG", "Toggle Auto-Add to Craft Bag")
+  ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_AUTO-ADD_TO_CRAFT_BAG", "Toggle Auto-Add Craft Bag")
+
+  EVENT_MANAGER:RegisterForEvent(ADDON_NAME, EVENT_PLAYER_DEACTIVATED, OnPlayerDeactivated)
   EVENT_MANAGER:UnregisterForEvent(ADDON_NAME, EVENT_ADD_ON_LOADED)
+  self:Initialize()
+end
+
+-- Initialize
+function CraftBagKeybind:Initialize()
+    EVENT_MANAGER:UnregisterForEvent(ADDON_NAME, EVENT_ADD_ON_LOADED)
 end
 
 -- Binding
-function CraftBagKeybind:Switch()
+function Switch()
     local newState = 1 - GetSetting(SETTING_TYPE_LOOT, LOOT_SETTING_AUTO_ADD_TO_CRAFT_BAG)
-    SetSetting(SETTING_TYPE_LOOT, LOOT_SETTING_AUTO_ADD_TO_CRAFT_BAG, newState)
-    -- set up for chat relay
-    CraftBagKeybind:SendToChat()
-end
-
--- Chat notifications
-function CraftBagKeybind:SendToChat()
-  if GetSetting(SETTING_TYPE_LOOT, LOOT_SETTING_AUTO_ADD_TO_CRAFT_BAG) == '1' then 
-    d('Auto-Add to Craft Bag Enabled')
-  else 
-    d('Auto-Add to Craft Bag Disabled')
-  end
-end
-
+    SetSetting(SETTING_TYPE_LOOT, LOOT_SETTING_AUTO_ADD_TO_CRAFT_BAG, newState) 
+end  
 -- Load Event Manager
-EVENT_MANAGER:RegisterForEvent(ADDON_NAME, EVENT_ADD_ON_LOADED, OnAddOnLoaded)
---end
+EVENT_MANAGER:RegisterForEvent(ADDON_NAME, EVENT_ADD_ON_LOADED, CraftBagKeybind.OnAddOnLoaded)
+-- end

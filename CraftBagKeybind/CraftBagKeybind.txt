@@ -2,7 +2,7 @@
 ## Description: Adds a keybind for the Auto-Add to Craft Bag setting.
 ## Author: |C9b22ffautocatalyst|r
 ## Version: 1.0
-## APIVersion: 100025
+## APIVersion: 100026
 
 Bindings.xml
 CraftBagKeybind.lua
